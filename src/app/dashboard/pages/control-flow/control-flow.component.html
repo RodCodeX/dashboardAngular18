@@ -1,1 +1,80 @@
-<p>control-flow works!</p>
+<app-title title="Control Flow" withShadow ></app-title>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <!-- @if - @else -->
+        <div class="bg-white rounded shadow p-10">
+            <h1 class="text-xl font-bold text-center">Control Flow if - else</h1>
+            <h2 class="text-2xl font-bold mb-5">if: {{showContent()}}</h2>
+
+            <button class="p-2 bg-blue-500 text-white" (click)="toggleContent()">
+                Click me!
+            </button>
+
+            @if(showContent()) {
+                <p>Hola mundo</p>
+            } @else {
+                <p>********</p>
+            }
+        </div>
+
+        <!-- @switch -->
+        <div class="bg-white rounded shadow p-10">
+            <h1 class="text-xl font-bold text-center">Control Flow switch</h1>
+            <h2 class="text-2xl">{{grade()}}</h2>
+            @switch (grade()) {
+                @case ('A') {
+                    <p class="text-green-600">Arriba de 90</p>
+                }
+                @case ('B') {
+                    <p class="text-blue-600">Arriba de 80</p>
+                }
+                @default {
+                    <p class="text-red-600">Reprobado</p>
+                }
+            }
+        </div>
+
+        <!-- @for -->
+        <!-- 
+            i => es el índice, 
+            first => indica si es el primer elemento, 
+            last => si es el último, 
+            even => si es par, (true si es par | false si es impar)
+            odd => si es impar, (true si es impar | false si es impar)
+            count => es el total de elementos.
+        -->
+        <div class="bg-white rounded shadow p-10">
+            <h1 class="text-xl font-bold text-center">Control Flow for</h1>
+            <ul>
+                @for (framework of frameworks(); track framework; 
+                    let i = $index,
+                    first = $first, last= $last, even = $even, odd = $odd, count=$count ) {
+                    <!-- Lista con indice  -->
+                    <!-- <li>{{i +1 }} - {{framework}}</li> -->
+                    
+                    <!-- count cuenta el total de la lista -->
+                    <li 
+                        [class]="{
+                            'bg-red-100' : even && !first && !last, 
+                            'bg-pink-200' : odd && !first && !last,
+                            'bg-blue-200' : first || last,
+                            }">
+                        {{i +1 }}/ {{count}} - {{framework}}
+                    </li>  
+                }
+            </ul>
+        </div>
+
+            <!-- @for empty -->
+            <div class="bg-white rounded shadow p-10">
+                <h1 class="text-xl font-bold text-center">Control Flow for width empty</h1>
+                <ul>
+                    @for (framework of frameworks2(); track framework) {
+                        <li>{{framework}}</li>
+                    } @empty {
+                        <li>No hay Framework </li>
+                    }
+                </ul>
+        
+            </div>
+    </section>
