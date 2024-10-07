@@ -23,6 +23,20 @@ export default class ChangeDetectionComponent {
   
   currentFramework= computed (
     () => `Change detection - ${this.frameworkAsSignal().name}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   )
 
   frameworkAsSignal = signal({
