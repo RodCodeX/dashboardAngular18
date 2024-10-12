@@ -62,7 +62,17 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
+    // redirectTo: '/dashboard',
+    redirectTo: (route) => {
+      console.log(route);
+      // const authService = inject(AuthService)
+      //if (authService.isLoggedIn()) {
+
+      return '/dashboard/material'
+    },
     pathMatch: 'full',
   },
+  /**
+   * No service el redirecto Function para hacer logica en la redireccion
+   */
 ];
